@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyGitSample</string>
+    <string name="search_keyword_hint">검색할 사용자 이름을 입력해주세요.</string>
+    <string name="search">검색</string>
+</resources>
