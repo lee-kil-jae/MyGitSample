@@ -33,11 +33,11 @@ var apiDevPart = module {
 
 var viewModelpart = module{
     viewModel{
-        MainViewModel(get())
+        MainViewModel()
     }
 
     viewModel{
-        UserListViewModel()
+        UserListViewModel(get())
     }
 }
 

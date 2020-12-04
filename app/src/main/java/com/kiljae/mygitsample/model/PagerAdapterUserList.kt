@@ -6,8 +6,13 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.kiljae.mygitsample.view.UserListFragment
 
 class PagerAdapterUserList(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager){
+    val fragmentMap = mutableMapOf<Int, Fragment>()
+
     override fun getItem(position: Int): Fragment {
-        return UserListFragment()
+        if(fragmentMap[position] == null){
+            fragmentMap[position] = UserListFragment()
+        }
+        return fragmentMap[position]!!
     }
 
     override fun getCount(): Int {

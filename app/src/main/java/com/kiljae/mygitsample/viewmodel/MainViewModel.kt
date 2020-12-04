@@ -2,11 +2,13 @@ package com.kiljae.mygitsample.viewmodel
 
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import com.kiljae.mygitsample.common.NotNullMutableLiveData
+import com.kiljae.mygitsample.common.data.MyHeader
 import com.kiljae.mygitsample.model.network.GithubApiInterface
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private val github: GithubApiInterface): BaseViewModel() {
+class MainViewModel(): BaseViewModel() {
 
     companion object{
         val TAG = "MainViewModel"
@@ -15,21 +17,13 @@ class MainViewModel(private val github: GithubApiInterface): BaseViewModel() {
     val keyword = NotNullMutableLiveData<String>("")
     val count = NotNullMutableLiveData<Int>(0)
 
+    val search = MutableLiveData<String>()
+    val header = MyHeader()
+
     fun onClickSearch(view: View){
-
-        addDisposable(
-            github.getUserSearch(keyword.value, 1)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.single())
-                    .subscribe({
-                        Log.d(TAG, "response: ${it}")
-                        count.postValue(it.total_count)
-                    },{
-                         Log.d(TAG, "error: ${it.message}")
-                        count.postValue(0)
-                    })
-        )
-
+        if(!keyword.value.isNullOrEmpty()) {
+            search.postValue(keyword.value)
+        }
     }
 
 }

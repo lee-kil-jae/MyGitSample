@@ -7,6 +7,10 @@
         <variable
             name="vmMain"
             type="com.kiljae.mygitsample.viewmodel.MainViewModel" />
+        <import
+            type="com.kiljae.mygitsample.common.Util"
+            alias="util"/>
+
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -45,7 +49,7 @@
             android:layout_height="60dp"
             android:layout_margin="10dp"
             android:textSize="16dp"
-            android:text="@{String.valueOf(vmMain.count)}"
+            android:text="@{util.prettyText(vmMain.header.totalUserCount)}"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
