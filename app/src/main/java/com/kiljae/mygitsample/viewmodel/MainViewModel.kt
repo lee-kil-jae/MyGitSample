@@ -23,8 +23,10 @@ class MainViewModel(private val github: GithubApiInterface): BaseViewModel() {
                     .observeOn(Schedulers.single())
                     .subscribe({
                         Log.d(TAG, "response: ${it}")
+                        count.postValue(it.total_count)
                     },{
                          Log.d(TAG, "error: ${it.message}")
+                        count.postValue(0)
                     })
         )
 
